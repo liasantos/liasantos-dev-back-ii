@@ -3,7 +3,6 @@ create table usuarios (
     nome VARCHAR(255),
     cpf VARCHAR(20),
     telefone VARCHAR(20),
-    endereco VARCHAR(255),
     email VARCHAR(255),
     senha VARCHAR(60),
     primary key (id)
