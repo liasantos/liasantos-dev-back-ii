@@ -11,6 +11,7 @@ public class UsuarioDAO {
     public UsuarioDAO() {
         this.conexao = new ConnectionFactory().getConnection();
     }
+
     public void adicionar(Usuario usuario) {
         try {
             String sql = "insert into usuarios (nome, cpf, telefone, email, senha) values (?,?,?,?,?,?)";
@@ -36,12 +37,12 @@ public class UsuarioDAO {
             Usuario u;
             while (rs.next()) {
                 u = new Usuario();
-                u.setId(u.getLong("id"));
-                u.setNome(u.getString("nome"));
-                u.setCpf(u.getString("cpf"));
-                u.setTelefone(u.getString("telefone"));
-                u.setEmail(u.getString("email"));
-                u.setSenha(u.getString("senha"));
+                u.setId(rs.getLong("id"));
+                u.setNome(rs.getString("nome"));
+                u.setCpf(rs.getString("cpf"));
+                u.setTelefone(rs.getString("telefone"));
+                u.setEmail(rs.getString("email"));
+                u.setSenha(rs.getString("senha"));
                 lista.add(u);
             } return lista;
         } catch(SQLException sqle) {
