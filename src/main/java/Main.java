@@ -29,6 +29,7 @@ public class Main {
             String senha = rs.getString("senha");
             System.out.format("\n%s %s %s %s %s %s %s\n", id, nome, cpf, telefone, email, senha);
         }
-    }
+
+            }
 
 }
