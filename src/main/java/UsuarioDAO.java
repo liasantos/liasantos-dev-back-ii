@@ -3,6 +3,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class UsuarioDAO {
@@ -90,4 +92,30 @@ public class UsuarioDAO {
             System.out.println("Erro desconhecido");
         }
     }
+
+    public Usuario getUsuario(long id) {
+        Usuario u = new Usuario();;
+        String sql = "select * from usuarios where `id` = ?";
+        try {
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setLong(1, id);
+            ResultSet rs= stmt.executeQuery();
+            if (!rs.next() ) {
+                System.out.println("dado nao encontrado");
+                return u;
+            }
+            u.setId(rs.getLong("id"));
+            u.setNome(rs.getString("nome"));
+            u.setCpf(rs.getString("cpf"));
+            u.setTelefone(rs.getString("telefone"));
+            u.setEmail(rs.getString("email"));
+            u.setSenha(rs.getString("senha"));
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Nao foi possivel carregar o dado solicitado");
+        }
+        return u;
+    }
 }
+
